@@ -20,7 +20,7 @@ namespace ValidationBenchmark
             _client = _factory.CreateClient();
 
             // Cria o payload uma única vez para não afetar o benchmark
-            var requestData = new { Name = "", Validate = true };
+            var requestData = new { Name = "", Validate = true, NameType = 1 };
             _payload = JsonContent.Create(requestData);
         }
 
