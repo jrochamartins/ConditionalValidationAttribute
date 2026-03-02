@@ -25,27 +25,27 @@ namespace ValidationBenchmark
         }
 
         [Benchmark(Baseline = true)]
-        public async Task<HttpResponseMessage> EndpointPostMetodo1()
+        public async Task<HttpResponseMessage> EndpointWithDinamicCoreRequiredIf()
         {
-            return await _client.PostAsync("/Validation/Post1", _payload);
+            return await _client.PostAsync("/Validation/WithDinamicCoreRequiredIf", _payload);
         }
 
         [Benchmark]
-        public async Task<HttpResponseMessage> EndpointPostMetodo2()
+        public async Task<HttpResponseMessage> EndpointWithDynamicExpressoRequiredIf()
         {
-            return await _client.PostAsync("/Validation/Post2", _payload);
+            return await _client.PostAsync("/Validation/WithDynamicExpressoRequiredIf", _payload);
         }
 
         [Benchmark]
-        public async Task<HttpResponseMessage> EndpointPostMetodo3()
+        public async Task<HttpResponseMessage> EndpointWithZExpresssionsRequiredIf()
         {
-            return await _client.PostAsync("/Validation/Post3", _payload);
+            return await _client.PostAsync("/Validation/WithZExpresssionsRequiredIf", _payload);
         }
 
         [Benchmark]
-        public async Task<HttpResponseMessage> EndpointPostMetodo4()
+        public async Task<HttpResponseMessage> EndpointValidateIf()
         {
-            return await _client.PostAsync("/Validation/Post4", _payload);
+            return await _client.PostAsync("/Validation/ValidateIf", _payload);
         }
 
         [GlobalCleanup]

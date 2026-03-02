@@ -5,14 +5,14 @@ using System.Linq.Expressions;
 
 namespace ValidationSample.Validations
 {
-    public class RequiredIf1Attribute : RequiredAttribute
+    public class WithDinamicCoreRequiredIfAttribute : RequiredAttribute
     {
         private readonly string _condition;
 
         // Agora o cache guarda um delegate Func<object, bool> fortemente tipado.
         private static readonly ConcurrentDictionary<string, Func<object, bool>> _compiledExpressionsCache = new();
 
-        public RequiredIf1Attribute(string condition)
+        public WithDinamicCoreRequiredIfAttribute(string condition)
         {
             _condition = condition ?? throw new ArgumentNullException(nameof(condition));
         }

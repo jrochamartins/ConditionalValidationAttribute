@@ -3,7 +3,7 @@ using Z.Expressions;
 
 namespace ValidationSample.Validations
 {
-    public class RequiredIf3Attribute(string condition) : RequiredAttribute
+    public class WithZExpresssionsRequiredIfAttribute(string condition) : RequiredAttribute
     {
         protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
         {

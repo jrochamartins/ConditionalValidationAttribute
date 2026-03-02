@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ValidationSample.Validations
 {
-    public class RequiredIf2Attribute(string condition) : RequiredAttribute
+    public class WithDynamicExpressoRequiredIfAttribute(string condition) : RequiredAttribute
     {
         protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
         {

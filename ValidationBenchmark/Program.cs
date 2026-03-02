@@ -1,12 +1,4 @@
 ﻿using BenchmarkDotNet.Running;
+using ValidationBenchmark;
 
-namespace ValidationBenchmark
-{
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            var summary = BenchmarkRunner.Run<EndpointBenchmarks>();
-        }
-    }
-}
+BenchmarkRunner.Run<EndpointBenchmarks>();
