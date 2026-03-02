@@ -1,4 +1,5 @@
-﻿using Microsoft.CodeAnalysis.CSharp.Scripting;
+﻿using Microsoft.AspNetCore.DataProtection.KeyManagement;
+using Microsoft.CodeAnalysis.CSharp.Scripting;
 using Microsoft.CodeAnalysis.Scripting;
 using System.Collections.Concurrent;
 using System.ComponentModel.DataAnnotations;
@@ -37,7 +38,18 @@ namespace ValidationSample.Validations
                 // lendo os dados estritamente do parâmetro 'key', evitando a alocação de Closure.
                 scriptRunner = _compiledScriptsCache.GetOrAdd(cacheKey, static key =>
                 {
-                    var script = CSharpScript.Create<bool>(key.Condition, globalsType: key.Type);
+                    // 1. Configurando as opções do Script
+                    var options = ScriptOptions.Default
+                        // Carrega a DLL onde o seu Model (e provavelmente o Enum) está hospedado
+                        .WithReferences(key.Type.Assembly);
+                        // Opcional: Importa o namespace do model, permitindo escrever a condição sem o caminho completo
+                        //.WithImports(key.Type.Namespace, "System");
+
+                    var script = CSharpScript.Create<bool>(
+                        key.Condition,
+                        options: options,
+                        globalsType: key.Type);
+
                     return script.CreateDelegate();
                 });
             }
