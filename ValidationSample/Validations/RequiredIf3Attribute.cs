@@ -1,0 +1,18 @@
+﻿using System.ComponentModel.DataAnnotations;
+using Z.Expressions;
+
+namespace ValidationSample.Validations
+{
+    public class RequiredIf3Attribute(string condition) : RequiredAttribute
+    {
+        protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
+        {
+            var evaluateFunction = Eval.Compile<Func<object?, bool>>(condition, "Model");
+            var evaluated = evaluateFunction(validationContext.ObjectInstance);
+
+            if (evaluated)
+                return base.IsValid(value, validationContext);
+            return ValidationResult.Success;
+        }
+    }
+}

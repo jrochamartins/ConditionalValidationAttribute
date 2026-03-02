@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="ValidationBenchmark/ValidationBenchmark.csproj" Id="46668d1e-a96f-48a9-8286-c0666784c7be" />
+  <Project Path="ValidationSample/ValidationSample.csproj" />
+</Solution>
