@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ValidationSample.Validations
 {
+    [AttributeUsage(AttributeTargets.Property, AllowMultiple = true)]
     public class ValidateIfAttribute : ValidationAttribute
     {
         private readonly string Condition;

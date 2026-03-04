@@ -4,6 +4,7 @@ namespace ValidationSample.Validations
 {
     public class RequiredStringAttribute : RequiredAttribute
     {
-        public RequiredStringAttribute(bool allowEmptyStrings = false) => AllowEmptyStrings = allowEmptyStrings;
+        public RequiredStringAttribute() => AllowEmptyStrings = false;
+        public RequiredStringAttribute(bool allowEmptyStrings) => AllowEmptyStrings = allowEmptyStrings;
     }
 }

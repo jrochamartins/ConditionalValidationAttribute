@@ -3,7 +3,7 @@
 namespace ValidationSample.Tests
 {
     public class RequiredStringAttributeTests
-    {   
+    {
         [Fact]
         public void Constructor_Default_SetsAllowEmptyStringsToFalse()
         {
@@ -20,7 +20,7 @@ namespace ValidationSample.Tests
             Assert.True(attribute.AllowEmptyStrings);
         }
 
-        
+
         [Fact]
         public void IsValid_WhenValueIsNull_ReturnsFalse()
         {

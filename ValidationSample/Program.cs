@@ -1,4 +1,7 @@
 
+using Scalar.AspNetCore;
+using ValidationSample.Filters;
+
 namespace ValidationSample
 {
     public class Program
@@ -7,20 +10,28 @@ namespace ValidationSample
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
+            // Add services to the container.           
 
             builder.Services.AddControllers();
+            builder.Services.AddOpenApi(options =>
+            {
+                options.OpenApiVersion = Microsoft.OpenApi.OpenApiSpecVersion.OpenApi3_1;
+                options.AddSchemaTransformer<OpenApiSchemaFilter>();
+            });
 
-            // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-            builder.Services.AddOpenApi();
+            //builder.Services.Configure<ApiBehaviorOptions>(options =>
+            //{
+            //    // Desabilita o retorno automático de 400 Bad Request
+            //    options.SuppressModelStateInvalidFilter = true;
+            //});
 
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
                 app.MapOpenApi();
 
+                app.MapScalarApiReference();
                 app.UseSwaggerUI(options =>
                 {
                     options.DisplayRequestDuration();
@@ -29,7 +40,6 @@ namespace ValidationSample
             }
 
             app.UseAuthorization();
-
             app.MapControllers();
 
             app.Run();

@@ -20,32 +20,14 @@ namespace ValidationBenchmark
             _client = _factory.CreateClient();
 
             // Cria o payload uma única vez para não afetar o benchmark
-            var requestData = new { Name = "", Validate = true, NameType = 1 };
+            var requestData = new { DocumentNumber = "", DocumentType = "CPF" };
             _payload = JsonContent.Create(requestData);
         }
 
         [Benchmark(Baseline = true)]
-        public async Task<HttpResponseMessage> EndpointWithDinamicCoreRequiredIf()
+        public async Task<HttpResponseMessage> PostValidation()
         {
-            return await _client.PostAsync("/Validation/WithDinamicCoreRequiredIf", _payload);
-        }
-
-        [Benchmark]
-        public async Task<HttpResponseMessage> EndpointWithDynamicExpressoRequiredIf()
-        {
-            return await _client.PostAsync("/Validation/WithDynamicExpressoRequiredIf", _payload);
-        }
-
-        [Benchmark]
-        public async Task<HttpResponseMessage> EndpointWithZExpresssionsRequiredIf()
-        {
-            return await _client.PostAsync("/Validation/WithZExpresssionsRequiredIf", _payload);
-        }
-
-        [Benchmark]
-        public async Task<HttpResponseMessage> EndpointValidateIf()
-        {
-            return await _client.PostAsync("/Validation/ValidateIf", _payload);
+            return await _client.PostAsync("/Validation", _payload);
         }
 
         [GlobalCleanup]
