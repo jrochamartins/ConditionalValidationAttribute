@@ -28,7 +28,7 @@ namespace ValidationSample
                     return Task.CompletedTask;
                 });
 
-                options.AddSchemaTransformer<OpenApiSchemaTransformer>();
+                options.AddSchemaTransformer<OpenApiSchemaTransformer2>();
                 //options.AddSchemaTransformer<CachedOpenApiSchemaTransformer>();
             });
 
