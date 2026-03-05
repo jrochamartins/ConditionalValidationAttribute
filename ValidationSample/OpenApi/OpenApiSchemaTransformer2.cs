@@ -24,15 +24,11 @@ namespace ValidationSample.OpenApi
 
                 if (!schema.Properties.TryGetValue(jsonPropName, out var propertySchemaInterface) ||
                     propertySchemaInterface is not OpenApiSchema propertySchema)
-                {
                     continue;
-                }
 
                 // 4. Aplica a modificação no schema
-                foreach (IOpenApiPropertyModifier modifier in attributes)
-                {
+                foreach (IOpenApiPropertyModifier modifier in attributes.Cast<IOpenApiPropertyModifier>())
                     modifier.ApplyModifier(schema, propertySchema, jsonPropName);
-                }
             }
 
             return Task.CompletedTask;
