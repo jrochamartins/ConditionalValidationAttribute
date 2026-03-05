@@ -1,25 +1,18 @@
-﻿namespace ValidationSample.Models
-{
+﻿using ValidationSample.Filters;
 
-    /// <summary>
-    /// Requisição de Validação de documento
-    /// </summary>
+namespace ValidationSample.Models
+{
     public class ValidateDocumentRequest : ValidateDocumentRequestBase
-    {
-        [OpenApiRequired]
-        public override string? DocumentNumber { get; set; }
+    {   
+        //public override string? DocumentNumber { get; set; }
     }
 
-    /// <summary>
-    /// Requisição de Validação de documento base
-    /// </summary>
     public class ValidateDocumentRequestBase
     {
+        [OpenApiRequired]
         public DocumentType DocumentType { get; set; }
 
+        [OpenApiRequired]
         public virtual string? DocumentNumber { get; set; }
     }
-
-    [AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]
-    public class OpenApiRequiredAttribute : Attribute { }
 }

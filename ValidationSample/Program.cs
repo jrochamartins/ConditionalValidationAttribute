@@ -16,7 +16,8 @@ namespace ValidationSample
             builder.Services.AddOpenApi(options =>
             {
                 options.OpenApiVersion = Microsoft.OpenApi.OpenApiSpecVersion.OpenApi3_1;
-                options.AddSchemaTransformer<OpenApiSchemaFilter>();
+                //options.AddSchemaTransformer<OpenApiSchemaFilter>();
+                options.AddSchemaTransformer<CachedOpenApiSchemaFilter>();
             });
 
             //builder.Services.Configure<ApiBehaviorOptions>(options =>
