@@ -1,6 +1,6 @@
 ﻿using Microsoft.OpenApi;
 
-namespace ValidationSample.Filters
+namespace ValidationSample.OpenApi
 {
     public interface IOpenApiPropertyModifier
     {   

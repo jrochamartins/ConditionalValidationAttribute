@@ -2,9 +2,9 @@
 using Microsoft.OpenApi;
 using System.Text.Json;
 
-namespace ValidationSample.Filters
+namespace ValidationSample.OpenApi
 {
-    public class OpenApiSchemaFilter : IOpenApiSchemaTransformer
+    public class OpenApiSchemaTransformer : IOpenApiSchemaTransformer
     {
         public Task TransformAsync(OpenApiSchema schema, OpenApiSchemaTransformerContext context, CancellationToken cancellationToken)
         {

@@ -1,6 +1,6 @@
 ﻿using Microsoft.OpenApi;
 
-namespace ValidationSample.Filters
+namespace ValidationSample.OpenApi
 {
     [AttributeUsage(AttributeTargets.Property)]
     public class OpenApiMinLengthAttribute : Attribute, IOpenApiPropertyModifier

@@ -1,6 +1,6 @@
-﻿using Microsoft.OpenApi; // <-- Importante: O JsonSchemaType fica neste namespace
+﻿using Microsoft.OpenApi;
 
-namespace ValidationSample.Filters
+namespace ValidationSample.OpenApi
 {
     [AttributeUsage(AttributeTargets.Property)]
     public class OpenApiRequiredAttribute : Attribute, IOpenApiPropertyModifier

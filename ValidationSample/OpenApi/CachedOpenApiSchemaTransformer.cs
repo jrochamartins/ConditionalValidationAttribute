@@ -3,9 +3,9 @@ using Microsoft.OpenApi;
 using System.Collections.Concurrent;
 using System.Text.Json;
 
-namespace ValidationSample.Filters
+namespace ValidationSample.OpenApi
 {
-    public class CachedOpenApiSchemaFilter : IOpenApiSchemaTransformer
+    public class CachedOpenApiSchemaTransformer : IOpenApiSchemaTransformer
     {
         // 2. Um Record interno para guardar apenas o que importa (Nome no JSON e os Modificadores)
         private sealed record CachedProperty(string JsonName, IOpenApiPropertyModifier[] Modifiers);

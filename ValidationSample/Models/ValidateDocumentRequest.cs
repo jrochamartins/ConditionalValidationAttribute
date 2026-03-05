@@ -1,4 +1,4 @@
-﻿using ValidationSample.Filters;
+﻿using ValidationSample.OpenApi;
 
 namespace ValidationSample.Models
 {

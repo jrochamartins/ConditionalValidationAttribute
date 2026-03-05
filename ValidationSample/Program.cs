@@ -1,6 +1,6 @@
 
 using Scalar.AspNetCore;
-using ValidationSample.Filters;
+using ValidationSample.OpenApi;
 
 namespace ValidationSample
 {
@@ -16,8 +16,20 @@ namespace ValidationSample
             builder.Services.AddOpenApi(options =>
             {
                 options.OpenApiVersion = Microsoft.OpenApi.OpenApiSpecVersion.OpenApi3_1;
-                //options.AddSchemaTransformer<OpenApiSchemaFilter>();
-                options.AddSchemaTransformer<CachedOpenApiSchemaFilter>();
+
+                options.AddSchemaTransformer((schema, context, ct) =>
+                {
+                    if (context.JsonTypeInfo.Type.FullName is not null)
+                    {
+                        // FORMA NATIVA E CORRETA NO ASP.NET 10:
+                        // Resolve o conflito usando o namespace completo do tipo
+                        options.CreateSchemaReferenceId = (typeInfo) => typeInfo.Type.FullName;
+                    }
+                    return Task.CompletedTask;
+                });
+
+                options.AddSchemaTransformer<OpenApiSchemaTransformer>();
+                //options.AddSchemaTransformer<CachedOpenApiSchemaTransformer>();
             });
 
             //builder.Services.Configure<ApiBehaviorOptions>(options =>
