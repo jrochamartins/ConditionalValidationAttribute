@@ -5,17 +5,12 @@ using System.Linq.Expressions;
 
 namespace ValidationSample.Validations
 {
-    public class WithDinamicCoreRequiredIfAttribute : RequiredAttribute
+    public class WithDinamicCoreRequiredIfAttribute(string condition) : RequiredAttribute
     {
-        private readonly string _condition;
+        private readonly string _condition = condition ?? throw new ArgumentNullException(nameof(condition));
 
         // Agora o cache guarda um delegate Func<object, bool> fortemente tipado.
         private static readonly ConcurrentDictionary<string, Func<object, bool>> _compiledExpressionsCache = new();
-
-        public WithDinamicCoreRequiredIfAttribute(string condition)
-        {
-            _condition = condition ?? throw new ArgumentNullException(nameof(condition));
-        }
 
         protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
         {
@@ -31,7 +26,7 @@ namespace ValidationSample.Validations
 
                 // 2. Faz o parse da string gerando uma Expression Tree compreensível pelo .NET
                 var parsedLambda = DynamicExpressionParser.ParseLambda(
-                    new[] { modelParameter },
+                    [modelParameter],
                     typeof(bool),
                     _condition);
 
